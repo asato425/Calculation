@@ -10,13 +10,10 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class AdditionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    int TEXTLENGTH = 10;
+    int TEXTMAXLENGTH = 10;
     Spinner spinner;
 
     StringBuilder textResult;
@@ -76,6 +73,7 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
                 // 選択されたアイテムを取得
                 String selectedItem = (String) parent.getItemAtPosition(position);
 
+                //⚠️最初の因数分解だけ押しても反応しない
                 // 条件によって画面遷移
                 if (selectedItem.equals("因数分解")) {
                     Intent intent = new Intent(getApplicationContext(), FactorizationActivity.class);
@@ -109,7 +107,7 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
         //タップしたButtonのidをgetButtonに入れる
         int getButton = view.getId();
 
-        if(textResult.length() <= TEXTLENGTH){
+        if(textResult.length() <= TEXTMAXLENGTH){
             if(getButton == R.id.btn0){
                 textResult = calculator.numberProcess(textResult,0);
             }
@@ -165,6 +163,7 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
         }
         if(getButton == R.id.btnClear){
             textResult.delete(0,textResult.length());
+            textResult.append("0");
             textExp.delete(0,textExp.length());
         }
         //テキスト内容を受け取り、演算。元の内容をtextExpに入れて、結果をtextResultに入れる

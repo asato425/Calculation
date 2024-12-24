@@ -4,39 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity"
-    android:background="@color/black">
+    tools:context=".MainActivity">
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="70dp"
     />
     <TextView
         android:id="@+id/tvExpression"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/black"
+        android:background="@color/colorWhite"
         android:padding="16dp"
         android:text=""
-        android:textColor="#8D9E9C9C"
+        android:textColor="#8D313030"
         android:textSize="25sp"
         android:gravity="end" />
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/black"
+        android:background="@color/colorWhite"
         android:padding="16dp"
         android:text="0"
-        android:textColor="@color/white"
+        android:textColor="@color/colorBlack"
         android:textSize="40sp"
         android:gravity="end"
         android:layout_marginBottom="16dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        />
     <!-- ボタン配置用グリッド -->
     <GridLayout
         android:id="@+id/gridLayout"
@@ -227,7 +222,7 @@
             android:layout_height="70dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:backgroundTint="#292A2A"
+            android:backgroundTint="#2A2929"
             android:text="c"
             android:textColor="#FFFFFF"
             android:textSize="25sp"/>
