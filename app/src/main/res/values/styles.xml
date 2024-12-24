@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BlueButton">
+        <item name="android:background">#0084FF</item> <!-- 背景色を青に設定 -->
+        <item name="android:textColor">#FFFFFF</item> <!-- 文字色を白に設定 -->
+        <item name="android:textSize">20sp</item>    <!-- テキストサイズ -->
+        <item name="android:layout_width">70dp</item> <!-- 横幅 -->
+        <item name="android:layout_height">70dp</item> <!-- 縦幅 -->
+    </style>
+</resources>
