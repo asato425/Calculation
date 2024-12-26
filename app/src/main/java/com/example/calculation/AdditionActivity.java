@@ -53,7 +53,7 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
 
         spinner = findViewById(R.id.spinnerOptions);
         // Spinnerに表示する選択肢を設定
-        String[] options = {"因数分解", "データの分析", "素因数分解"};
+        String[] options = {"","因数分解", "データの分析", "素因数分解"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -73,7 +73,6 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
                 // 選択されたアイテムを取得
                 String selectedItem = (String) parent.getItemAtPosition(position);
 
-                //⚠️最初の因数分解だけ押しても反応しない
                 // 条件によって画面遷移
                 if (selectedItem.equals("因数分解")) {
                     Intent intent = new Intent(getApplicationContext(), FactorizationActivity.class);
@@ -108,6 +107,7 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
         int getButton = view.getId();
 
         if(textResult.length() <= TEXTMAXLENGTH){
+            //数字入力の時
             if(getButton == R.id.btn0){
                 textResult = calculator.numberProcess(textResult,0);
             }
@@ -138,9 +138,11 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
             if(getButton == R.id.btn9){
                 textResult = calculator.numberProcess(textResult,9);
             }
+            //符号反転の時
             if(getButton == R.id.btnPlusMinus){
-                //テキスト内容の最後が数字の際に符号反転させるメソッド、入力,出力がStringBuilderのメソッド
+                textResult = calculator.plusMinusProcess(textResult);
             }
+            //演算子入力の時
             if(getButton == R.id.btnPer){
                 textResult = calculator.operatorProcess(textResult,'%');
             }
@@ -156,17 +158,18 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
             if(getButton == R.id.btnDiv){
                 textResult = calculator.operatorProcess(textResult,'÷');
             }
-            //数字の後の時はそのまま、演算子の時は0.を追加
+            //小数点入力の時
             if(getButton == R.id.btnPoint){
-                textResult.append(".");
+                textResult = calculator.pointProcess(textResult);
             }
         }
+        //テキストクリアする時
         if(getButton == R.id.btnClear){
             textResult.delete(0,textResult.length());
             textResult.append("0");
             textExp.delete(0,textExp.length());
         }
-        //テキスト内容を受け取り、演算。元の内容をtextExpに入れて、結果をtextResultに入れる
+        //⚠️テキスト内容を受け取り、演算。元の内容をtextExpに入れて、結果をtextResultに入れる
         if(getButton == R.id.btnEqual){
 
         }
