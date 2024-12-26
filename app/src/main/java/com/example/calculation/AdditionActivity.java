@@ -171,7 +171,8 @@ public class AdditionActivity extends AppCompatActivity implements View.OnClickL
         }
         //⚠️テキスト内容を受け取り、演算。元の内容をtextExpに入れて、結果をtextResultに入れる
         if(getButton == R.id.btnEqual){
-
+            textExp.replace(0,textExp.length(),textResult.toString());
+            textResult = calculator.equalProcess(textResult);
         }
 
         tvResult.setText(textResult);

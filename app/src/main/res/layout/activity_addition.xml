@@ -117,13 +117,13 @@
             android:textSize="25sp" />
 
         <Button
-            android:id="@+id/btnPlus"
+            android:id="@+id/btnMul"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:backgroundTint="#FF9800"
-            android:text="+"
+            android:text="×"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
@@ -206,13 +206,13 @@
             android:textSize="25sp" />
 
         <Button
-            android:id="@+id/btnMul"
+            android:id="@+id/btnPlus"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:backgroundTint="#FF9800"
-            android:text="×"
+            android:text="+"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
