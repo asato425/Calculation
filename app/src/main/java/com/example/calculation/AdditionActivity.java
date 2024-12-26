@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdditionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    int TEXTMAXLENGTH = 10;
+    int TEXTMAXLENGTH = 20;
     Spinner spinner;
 
     StringBuilder textResult;

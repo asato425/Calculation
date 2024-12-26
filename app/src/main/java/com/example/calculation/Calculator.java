@@ -36,6 +36,9 @@ public class Calculator {
         if(text.toString().equals("0")){
             result = new StringBuilder(Integer.toString(number));
         }else{
+            if(text.charAt(text.length() - 1) == ')'){
+                result.append("×");
+            }
             result.append(number);
         }
         return result;
