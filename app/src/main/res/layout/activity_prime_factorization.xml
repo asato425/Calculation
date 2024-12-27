@@ -1,10 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrimeFactorizationActivity">
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
+
+        <!-- タイトル -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="素因数分解"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- 入力フィールド 1 -->
+        <EditText
+            android:id="@+id/tvInput"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="数値を入力してください"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 答えラベル -->
+        <TextView
+            android:id="@+id/answer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="答え"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:textColor="@android:color/black" />
+
+        <!-- 答え表示エリア -->
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:hint="ここに答えが表示されます" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:rowCount="5"
+            android:layout_gravity="center"
+            android:useDefaultMargins="true">
+
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="2"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="3"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#FF9800"
+                android:text="←"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="4"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="5"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="6"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#FF9800"
+                android:text="C"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="7"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="8"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="9"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btnDo"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#FF9800"
+                android:text="実行"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/spinnerOptions"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#2A2929"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"/>
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn00"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#292A2A"
+                android:text="00"
+                android:textColor="#FFFFFF"
+                android:textSize="22dp" />
+
+            <Button
+                android:id="@+id/btnNot"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:backgroundTint="#FF9800"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>

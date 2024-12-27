@@ -1,14 +1,27 @@
 package com.example.calculation;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.math.BigInteger;
+import java.util.ListIterator;
 
 public class Calculator {
 
     /*今後やること
+    **電卓
     * クリアするときに計算途中のときは一文字消すボタンを追加したい
     * 同じ数字の入力において小数点の複数回入力を防ぎたい(演算子を入力したら戻るフラグ設定する？)
     * 0で割る時の処理、iphoneの電卓では不定形(0/0)か未定義(2/0など)と表示、現在の実装ではNaNかInfinity
+    *
+    * 素因数分解
+    * 桁が大きい数でやるとたまに次の計算ができず固まる(原因不明)
+    *
     * */
 
     private static final String NUMBER_REGEX = "\\(?-?\\d+(\\.\\d+)?\\)?";
@@ -45,7 +58,7 @@ public class Calculator {
         if(text.toString().equals("0")){
             result = new StringBuilder(Integer.toString(number));
         }else{
-            if(text.charAt(text.length() - 1) == ')'){
+            if(text.length() > 0 && text.charAt(text.length() - 1) == ')'){
                 result.append("×");
             }
             result.append(number);
@@ -148,6 +161,54 @@ public class Calculator {
 
         return result;
     }
+    //素因数分解の実行ボタンが押された時の処理
+    protected StringBuilder doProcess(StringBuilder text){
+        //文字列を数値に変換(入力段階で数値になることは確定しているためエラーチェックはしていない)
+        long number = Long.parseLong(text.toString());
+        return  primeFactorization(number);
+    }
+
+    //素因数分解をするメソッド
+    private StringBuilder primeFactorization(long num){
+        StringBuilder result = new StringBuilder("");
+        int counter = 0;
+        long divNum = 2;
+        long copy = num;
+        List<Long> divNumList = new ArrayList<Long>();
+
+        while(copy != 1){
+            counter = 0;
+            while(copy % divNum == 0){
+                copy /= divNum;
+                counter += 1;
+                divNumList.add(divNum);
+            }
+            if(counter > 0){
+                if(result.length() != 0){
+                    result.append("×");
+                }
+                result.append( String.format("%d", divNum));
+                if(counter > 1){
+                    result.append("^");
+                    result.append( String.format("%d", counter));
+                }
+            }
+            divNum += 1;
+            while(existDivNum(divNumList, divNum)){
+                divNum += 1;
+            }
+        }
+        return result;
+    }
+    private boolean existDivNum(List<Long> divNumList, long num){
+        for(long divNum:divNumList){
+            if(num % divNum == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     //文字列が数字かどうか
     private boolean numberIs(String s){
