@@ -18,6 +18,7 @@ public class Calculator {
     * クリアするときに計算途中のときは一文字消すボタンを追加したい
     * 同じ数字の入力において小数点の複数回入力を防ぎたい(演算子を入力したら戻るフラグ設定する？)
     * 0で割る時の処理、iphoneの電卓では不定形(0/0)か未定義(2/0など)と表示、現在の実装ではNaNかInfinity
+    * 小数の計算で一部小数点以下の表示が多くなるバグが発生→0が連続する場合の処理は完了、9が続く場合だと答えがずれてしまう
     *
     * 素因数分解
     * 桁が大きい数でやるとたまに次の計算ができず固まる(原因不明)
@@ -151,15 +152,9 @@ public class Calculator {
         //計算
         double value = calculate(parseNumber);
 
-        //結果が整数の時は整数で出力
-        double threshold = 0.0001;
-        if (Math.abs(value - Math.round(value)) < threshold) {
-            result.append((int) Math.round(value));// ほぼ整数ならば四捨五入して整数に
-        } else {
-            result.append(value);  // それ以外は小数のまま
-        }
+        result.append(value);
 
-        return result;
+        return decimalZeroCleaner(result, 5);
     }
     //素因数分解の実行ボタンが押された時の処理
     protected StringBuilder doProcess(StringBuilder text){
@@ -284,6 +279,45 @@ public class Calculator {
         return result;
     }
 
+    private StringBuilder decimalZeroCleaner(StringBuilder number, int time){
+        StringBuilder result = new StringBuilder(number);
+        int index = 0;
+        int count = 0;
+        //インデックスを小数点まで移動
+        while(number.charAt(index) != '.'){
+            index++;
+            if(number.length() <= index){
+                break;
+            }
+        }
+        index++;
+        int start = index;
+        for(int i = index; i < number.length(); i++){
+            if (number.charAt(i) == number.charAt(i - 1)) {
+                count++; // 前の文字と同じならカウントを増やす
+                if (count == time) {
+                    // 連続回数に達したらそれ以降を削除
+                    result.setLength(start);
+                    break;
+                }
+            } else {
+                count = 1; // 異なる文字が出現したらカウントをリセット
+                start = i;
+            }
+        }
+
+        for(int i = result.length()-1; i >= 0; i--){
+            if(result.charAt(i) == '0'){
+                result.deleteCharAt(i);
+            }else if(result.charAt(i) == '.'){
+                result.deleteCharAt(i);
+                break;
+            }else{
+                break;
+            }
+        }
+        return result;
+    }
     private double calculate(List<Double> input){
 
         List<Double> intermediate = new ArrayList<>();

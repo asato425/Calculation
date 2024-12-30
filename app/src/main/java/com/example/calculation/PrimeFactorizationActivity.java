@@ -21,7 +21,7 @@ public class PrimeFactorizationActivity extends AppCompatActivity implements Vie
     StringBuilder textInput;
 
     TextView tvResult;
-    EditText tvInput;
+    TextView tvInput;
 
     Calculator calculator = new Calculator();
 
